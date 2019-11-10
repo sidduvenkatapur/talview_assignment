@@ -1,0 +1,77 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row header_name">
+    <div *ngIf="username">
+      <div *ngIf="reponame">
+        <h3>Repository Name: - {{reponame}}</h3>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card-content">
+        <div class="card-img">
+          <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+            *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+            [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
+            (initError)="handleInitError($event)"></webcam>
+
+        </div>
+        <div class="card-desc">
+          <button class="actionBtn btn btn-primary margin-top-20" (click)="triggerSnapshot();">Take A Snapshot</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-6">
+
+      <div class="card-content snapshot" *ngIf="webcamImage">
+        <div class="card-img">
+          <img class="captured-img" [src]="webcamImage.imageAsDataUrl" />
+
+        </div>
+        <div class="card-desc">
+
+          <input type="text" class="form-control" [(ngModel)]="message" placeholder="Commit Message">
+          <button class="btn btn-primary custom-push-btn" (click)="pushContentToRepo();">Push Content</button>
+        </div>
+      </div>
+      <div [(ngModel)]="responseMessage">
+        <p>{{ responseMessage }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div style="text-align:center">
+    
+    <div>
+      <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+              [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+              [videoOptions]="videoOptions"
+              [imageQuality]="1"
+              (cameraSwitched)="cameraWasSwitched($event)"
+              (initError)="handleInitError($event)"
+      ></webcam>
+      <br/>
+      <button class="actionBtn btn btn-primary margin-top-20" (click)="triggerSnapshot();">Take A Snapshot</button>
+    </div>
+  </div>
+  </div>
+  <div class="col-md-6">
+   <div class="snapshot" *ngIf="webcamImage">
+    <h2>preview to the user</h2>
+    <img class="captured-img"  [src]="webcamImage.imageAsDataUrl"/>
+    <input type="text" class="form-control" [(ngModel)]="message"><br>
+    <div [(ngModel)] = "responseMessage"></div>
+    <button class="btn btn-primary btn-sm" (click)="pushContentToRepo();">Push</button>
+  </div>
+  
+  <h4 *ngIf="errors.length > 0">Messages:</h4>
+  <ul *ngFor="let error of errors">
+    <li>{{error | json}}</li>
+  </ul>
+  </div>
+  </div>
+</div> -->
