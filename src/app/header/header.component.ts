@@ -1,3 +1,6 @@
+
+
+/*----- Header Component-----*/
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -13,13 +16,13 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
-
+/*----- Back Button-----*/
   goBack() {
 
     window.history.back();
 
   }
-
+/*----- Logout-----*/
   logMeOut() {
     this.router.navigate(['/', "1"]);
 

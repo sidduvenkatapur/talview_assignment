@@ -1,10 +1,10 @@
+/*----- Capturing image and push to Repository-----*/
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Observable } from 'rxjs';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { ServiceComponent } from '../service/service.component';
 import { ActivatedRoute, Router } from "@angular/router";
-// import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-webcam',
@@ -13,10 +13,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class WebcamComponent implements OnInit {
   constructor(public _serviceComponent: ServiceComponent, private router: ActivatedRoute, private _router: Router) {
-    // this._serviceComponent.getUserRepoContent().subscribe(user => {
-    //   this.user = user;
-    //   console.log(JSON.stringify(this.user));
-    // });
+    
   }
 
 
@@ -40,7 +37,7 @@ export class WebcamComponent implements OnInit {
   // latest snapshot
   public webcamImage: WebcamImage = null;
 
-  // webcam snapshot trigger
+ 
   private trigger: Subject<void> = new Subject<void>();
   // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceId
   private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
@@ -93,7 +90,7 @@ export class WebcamComponent implements OnInit {
   public get nextWebcamObservable(): Observable<boolean | string> {
     return this.nextWebcam.asObservable();
   }
-
+/*-----  Push Captured image to Repository-----*/
   public pushContentToRepo() {      
 
     if (!this.message || this.message == "") {

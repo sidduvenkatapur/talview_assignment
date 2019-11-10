@@ -1,3 +1,6 @@
+
+/* Root Component */
+
 import { Component } from '@angular/core';
 import {ServiceComponent} from './service/service.component';
 import {GithubComponent} from './github/github.component';

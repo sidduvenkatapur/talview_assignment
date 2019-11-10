@@ -1,7 +1,12 @@
+
+
+/*------ For Displaying Repository content(Files)-------- */
+
+
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { ServiceComponent } from '../service/service.component';
-// import { }
+
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
@@ -20,6 +25,7 @@ export class ContentComponent implements OnInit {
 
   ngOnInit() {
 
+    /*-----Building Auth Parameters -----*/
     let obj = JSON.parse(this.router.snapshot.paramMap.get('encrypted'));
     this.reponame = obj.reponame;
     this.authVar = obj.auth;
@@ -28,12 +34,15 @@ export class ContentComponent implements OnInit {
     this.getReposContent();    
 
   }
+ /*-----Displaying Repository Content-----*/
 
   public getReposContent() {
     this._serviceComponent.getUserRepoContent(this.authVar, this.reponame, this.username).subscribe(repoContents => {
       this.repoContents = repoContents;      
     });
   }
+
+/*----- opening the webcam from repository content list for Capturing image-----*/
 
   public openWebcam(reponame : string) {   
     var obj= {

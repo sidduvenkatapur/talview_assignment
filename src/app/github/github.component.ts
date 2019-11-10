@@ -1,3 +1,6 @@
+
+/*----- For Listing Repository's-----*/
+
 import { Component, OnInit } from '@angular/core';
 import { ServiceComponent } from '../service/service.component';
 import {Router, ActivatedRoute} from "@angular/router";
@@ -29,15 +32,15 @@ export class GithubComponent implements OnInit {
     this.showRepos();
   }
  
+/*----- Listing Repository's-----*/
 
 public  showRepos() {    
     this._serviceComponent.getUserRepo(this.authVar).subscribe(repos => {
       this.repos = repos;
     });
   }
-
+/*----- Routing to Repository content list-----*/
   public  showReposContent(reponame : string) {  
-    
     var obj= {
       auth:this.authVar,
       reponame:reponame,

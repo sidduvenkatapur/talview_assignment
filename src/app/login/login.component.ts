@@ -1,3 +1,6 @@
+
+/*----- For Login with GitHub with  Basic Authentication-----*/
+
 import { Component, OnInit } from '@angular/core';
 import { ServiceComponent } from '../service/service.component';
 import { Router, ActivatedRoute} from "@angular/router";
@@ -20,21 +23,19 @@ export class LoginComponent implements OnInit {
   constructor(private _serviceComponent: ServiceComponent, private router: Router, private _router : ActivatedRoute) {
 
   }
-
+/*----- Login with Authentication -----*/
   public loginWithGitHub() {
     
     if (!this.username || !this.password) {
         this.responseMessage = "Please enter the credentials";
-        console.log(this.responseMessage);
         return;
     }
     
 
     this._serviceComponent.getUserLogin(this.username, this.password).subscribe(resp => {
-      console.log("reposs ",resp);    
-      
+        
       if (resp.status == 200) {
-        console.log(resp);
+       
         this.username  = JSON.parse(resp["_body"]).login;        
         this.encrypted = {
           "auth": btoa(this.username + ":" + this.password),
@@ -44,7 +45,6 @@ export class LoginComponent implements OnInit {
       }
     }, error => {
       this.responseMessage = "Login Failed, Please try again";
-      console.log(this.responseMessage);
     },
       () => {
 
