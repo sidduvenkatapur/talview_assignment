@@ -139,3 +139,7 @@ a.btn-card {
 .custom-push-btn{
     padding:5px 15px !important;
 }
+.push-response{
+    color:#05880a;
+    font-size: 20px;
+}

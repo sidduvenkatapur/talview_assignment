@@ -12,28 +12,25 @@ import { map } from 'rxjs/operators';
 })
 @Injectable()
 export class ServiceComponent {
-
-  // private username = "sidduvenkatapur";
-  // private password = "siddudesigner1990";
-
-
   constructor(private _http: Http) {
     console.log('Github service started');
   }
 
   getUserLogin(username: string, password: string) {
     let ht = { headers: new Headers({ 'Authorization': (`Basic ${btoa(`${username}:${password}`)}`) }) };
-    return this._http.get("https://api.github.com/user", ht).pipe(map(responce => responce.json()));
+    return this._http.get("https://api.github.com/user", ht).pipe(map(responce => {            
+      return responce;
+    }));    
   }
+ 
 
-  getUserRepoContent(authVar: string, repoName: string) {
-    var username = "sidduvenkatapur";
+  getUserRepoContent(authVar: string, repoName: string, username: string) {
+    
     let ht = { headers: new Headers({ 'Authorization': (`Basic ${authVar}`) }) };
     return this._http.get(`https://api.github.com/repos/${username}/${repoName}/contents`, ht).pipe(map(responce => responce.json()));
   }
 
   getUserRepo(authVar: string) {
-    console.log(authVar);
     let ht = { headers: new Headers({ 'Authorization': (`Basic ${authVar}`) }) };
     return this._http.get("https://api.github.com/user/repos", ht).pipe(map(responce => responce.json()));
   }
@@ -48,14 +45,13 @@ export class ServiceComponent {
       },
       "content": data.content
     };
-console.log("aut push conent",data);
+
 
     return this._http.put(`https://api.github.com/repos/${data.username}/${data.repo}/contents/${data.path}`, body, auth).pipe(map(responce => {      
       if (responce.status == 201) {
         return "Successfully pushed"
       } else
         return "Push operation failed"
-    }
-    ));
+    }));
   }
 }

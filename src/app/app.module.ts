@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
-import { DatabindingAssignmentComponent } from './databinding-assignment/databinding-assignment.component';
 import { ComponentDirective } from './component.directive';
 import { GithubComponent } from './github/github.component';
 import { ServiceComponent } from './service/service.component';
@@ -15,9 +13,10 @@ import {Routes,RouterModule} from "@angular/router";
 import { LoginComponent } from './login/login.component';
 import { ContentComponent } from './content/content.component';
 import { HeaderComponent } from './header/header.component'
-import {ToastrModule} from 'ngx-toastr';
+// import {ToastrModule} from 'ngx-toastr';
 const appRouters:Routes=[
   { path:"", component:LoginComponent},
+  { path:":logout", component:LoginComponent},
   { path:"home/:encrypted", component:GithubComponent},
   { path:"webcam/:encrypted", component:WebcamComponent},
   { path:"content/:encrypted", component:ContentComponent}
@@ -33,8 +32,8 @@ const appRouters:Routes=[
     HttpModule,
     WebcamModule,
     FormsModule,
-    RouterModule.forRoot(appRouters),
-    ToastrModule.forRoot()
+    RouterModule.forRoot(appRouters),    
+    // ToastrModule.forRoot()
   ],
   providers: [ServiceComponent, OAuthService],
   bootstrap: [AppComponent]

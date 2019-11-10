@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceComponent } from '../service/service.component';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -16,30 +16,47 @@ export class LoginComponent implements OnInit {
   user: string;
   repos: string;
   encrypted: {};
-  constructor(private _serviceComponent: ServiceComponent, private router: Router) {
-    this.username = "sidduvenkatapur";
-    this.password = "siddudesigner1990";
+  responseMessage: string;
+  constructor(private _serviceComponent: ServiceComponent, private router: Router, private _router : ActivatedRoute) {
+
   }
 
-  public loginWithGitHub() {    
-    this._serviceComponent.getUserLogin(this.username, this.password).subscribe(repos => {
-      this.encrypted = {
-        "auth":  btoa(this.username + ":" + this.password),
-        "username": this.username
-      }                     
-      this.router.navigate(['/home', JSON.stringify(this.encrypted)]);
-      console.log(this.encrypted);
-      // for (var i = 0; i < repos.length; i++) {
-      //  console.log(repos[i].name);
-      // }
-    });
+  public loginWithGitHub() {
+    
+    if (!this.username || !this.password) {
+        this.responseMessage = "Please enter the credentials";
+        console.log(this.responseMessage);
+        return;
+    }
+    
+
+    this._serviceComponent.getUserLogin(this.username, this.password).subscribe(resp => {
+      console.log("reposs ",resp);    
+      
+      if (resp.status == 200) {
+        console.log(resp);
+        this.username  = JSON.parse(resp["_body"]).login;        
+        this.encrypted = {
+          "auth": btoa(this.username + ":" + this.password),
+          "username": this.username
+        }
+        this.router.navigate(['/home', JSON.stringify(this.encrypted)]);
+      }
+    }, error => {
+      this.responseMessage = "Login Failed, Please try again";
+      console.log(this.responseMessage);
+    },
+      () => {
+
+      });
   }
-
-
 
   ngOnInit() {
-    this.username = "sidduvenkatapur";
-    this.password = "siddudesigner1990";
+    let logout = this._router.snapshot.paramMap.get("logout");
+    if (logout) {
+      this.username = null;
+      this.password = null;
+    }
   }
 
 }

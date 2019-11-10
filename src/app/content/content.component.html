@@ -1,24 +1,25 @@
 <app-header></app-header>
 <div class="container">
-        <div class="row header_name" *ngIf="username">        
-                <div class="row" *ngIf="reponame">
+        <div class="row header_name" *ngIf="username">
+                <div class="" *ngIf="reponame">
                         <h1>Repository Name : {{reponame}}</h1>
                 </div>
         </div>
-        
-        <div class="row" *ngIf="repoContents">
-            <div class="col-md-4" *ngFor="let eachContents of repoContents; let i = index" >
-                <div class="card-content" >
-                    <div class="card-desc">
-                        <div>
-                              <h3 style="text-align:center;margin-bottom: 20px;;">{{eachContents.name}}</h3>                                                                                                                
-                            </div>                                                   
-                    </div>
-                </div>
-            </div>            
-        </div>
         <div class="row" *ngIf="reponame">
-                <a (click)='openWebcam(reponame);' class="btn-card" style="margin:5px;">Capture Image</a>
+                <a (click)='openWebcam(reponame);' class="btn-card capture-btn">Capture Image</a>
         </div>
-    </div> 
 
+
+        <div class="row" *ngIf="repoContents">
+                <div class="col-md-4" *ngFor="let eachContents of repoContents; let i = index">
+                        <div class="card-content">
+                                <div class="card-desc">
+                                        <div>
+                                                <h3 style="text-align:center;margin-bottom: 20px;;">
+                                                        {{eachContents.name}}</h3>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>

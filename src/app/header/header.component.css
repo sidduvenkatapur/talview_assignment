@@ -3,3 +3,12 @@
     vertical-align: text-top;
     fill: currentColor;
 }
+.btn-primary{
+    color: #fff !important;
+}
+.btn-danger{
+    color:#fff !important;
+}
+.navbar{
+    padding: 10px 25px;
+}

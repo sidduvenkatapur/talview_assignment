@@ -14,7 +14,9 @@ export class ContentComponent implements OnInit {
   username: string;
   repoContents: any;
 
-  constructor(private router: ActivatedRoute, private _serviceComponent: ServiceComponent, private _router: Router) { }
+  constructor(private router: ActivatedRoute, private _serviceComponent: ServiceComponent, private _router: Router) {    
+
+   }
 
   ngOnInit() {
 
@@ -23,16 +25,13 @@ export class ContentComponent implements OnInit {
     this.authVar = obj.auth;
     this.username = obj.username;
 
-    this.getReposContent();
+    this.getReposContent();    
 
   }
 
   public getReposContent() {
-    this._serviceComponent.getUserRepoContent(this.authVar, this.reponame).subscribe(repoContents => {
+    this._serviceComponent.getUserRepoContent(this.authVar, this.reponame, this.username).subscribe(repoContents => {
       this.repoContents = repoContents;      
-      for (var i = 0; i < repoContents.length; i++) {
-        console.log(repoContents[i].name);
-      }
     });
   }
 

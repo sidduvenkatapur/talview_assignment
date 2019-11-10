@@ -20,8 +20,6 @@ export class GithubComponent implements OnInit {
   
   constructor(private _serviceComponent: ServiceComponent, private route : ActivatedRoute,
               private router : Router) {
-    
-
   }
 
   ngOnInit () {
@@ -35,10 +33,6 @@ export class GithubComponent implements OnInit {
 public  showRepos() {    
     this._serviceComponent.getUserRepo(this.authVar).subscribe(repos => {
       this.repos = repos;
-      //console.log(JSON.stringify(this.user));
-      for (var i = 0; i < repos.length; i++) {
-        console.log(repos[i].name);
-      }
     });
   }
 

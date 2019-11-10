@@ -1,57 +1,30 @@
-
-<!-- <input type="text"  id="username_text" [(ngModel)]="username" ><br>
-<input type="password"  id="password_text" [(ngModel)]="password" ><br>
- <button class="btn btn-primary" (click)="loginWithGitHub();">
-    Login with github
-</button> -->
-<!-- <div id="divResult"></div><br><br><br>
-<div *ngIf="user">
-        <p *ngFor="let eachuser of user; let i = index">
-                {{eachuser.name}} <button  role="presentation" class="btn btn-secondary" value={{eachuser.name}} (click)="showRepos();">Show Contents</button>
-        </p>
-</div>
-
-
-</div> -->
-
-<!--
-<div *ngIf="repos">
-                <p *ngFor="let eachrepo of repos; let i = index">
-                        {{eachrepo.name}} <button  role="presentation" class="btn btn-secondary" value={{eachuser.name}} (click)="showRepos();">Show Contents</button>
-                </p>                                        
-</div>                -->
 <app-header></app-header>
 <div class="container">
-                <div class="row header_name" *ngIf="username">
-                                <!-- <h1>Hello {{username}}</h1> -->
+    <div class="row header_name" *ngIf="username">
+        <h1>Repository List</h1>
+    </div>
 
-                                <h1>Repository List</h1>
+    <div class="container">
+        <div class="row" *ngIf="repos">
+            <div class="col-md-4" *ngFor="let eachrepo of repos; let i = index">
+                <div class="card-content">
+                    <div class="card-desc">
+                        <div>
+
+                            <a (click)='showReposContent(repos[i].name);'>
+                                <h3 style="text-align:center;margin-bottom: 20px;;">{{eachrepo.name}}</h3>
+                            </a>
+                            <div style="text-align: center;">
+
+                                <a (click)='showReposContent(repos[i].name);' class="btn-card" style="margin:5px;">List
+                                    of Files</a>
+                            </div>
+
                         </div>
-                        
-                        <div class="container">
-                                    <div class="row" *ngIf="repos">
-                                        <div class="col-md-4" *ngFor="let eachrepo of repos; let i = index" >
-                                            <div class="card-content" >
-                                                <div class="card-desc">
-                                                    <div>
-                                                         
-                                                          <a (click)='showReposContent(repos[i].name);' ><h3 style="text-align:center;margin-bottom: 20px;;">{{eachrepo.name}}</h3></a>
-                                                          <div style="text-align: center;">
-                                                                        
-                                                                        <a (click)='showReposContent(repos[i].name);' class="btn-card" style="margin:5px;">List of Files</a>  
-                                                          </div>
-                                                             
-                                                        </div>
-                                                       
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> 
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-         
-
-                
-<!-- <app-webcam></app-webcam> -->
-

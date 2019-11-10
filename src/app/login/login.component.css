@@ -1,8 +1,10 @@
 body{
-    background-image: url(https://gst-contracts.s3.amazonaws.com/uploads/bcc/cms/asset/avatar/24235/home_slider.jpg);
+    background-image: url(https://gst-contracts.s3.amazonaws.com/uploads/bcc/cms/asset/avatar/24235/home_slider.jpg) !important;
     background-repeat: no-repeat;
     height: 100%;
-    background-size: inherit;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 .card{
     height: 315px;
@@ -80,9 +82,14 @@ body{
     }
     .card-body {
         flex: 1 1 auto;
-        padding: 2rem 1.25rem;
+        padding: 2rem 1.5rem;
     }
     .form-group {
         margin-bottom: 1.40rem;
         text-align: center;
+    }
+    .error-msg{
+        position: absolute;
+        top: 65%;
+        color:#fd4646;
     }
