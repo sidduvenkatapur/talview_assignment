@@ -81,7 +81,7 @@ body{
 	font-family: 'Raleway', sans-serif;
 }
 .btn-card{
-	background-color: #1ABC9C;
+	background-color: #007bff;
 	color: #fff;
 	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
     padding: .84rem 2.14rem;
@@ -102,7 +102,7 @@ body{
     color: #fff;
 }
 .btn-card:hover {
-    background: orange;
+    background: #1bccb0;
 }
 a.btn-card {
     text-decoration: none;
